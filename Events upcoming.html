@@ -157,7 +157,7 @@
       <div class="status" id="match-status">Upcoming</div>
 
       <div class="score">
-        Score: <strong id="score-city">1</strong> - <strong id="score-liverpool">2</strong>
+        Score: <strong id="score-city">3</strong> - <strong id="score-liverpool">2</strong>
       </div>
          <div class="match-events">
        <!-- <h2>Match Events</h2>>-->
@@ -167,7 +167,8 @@
           <li>17:08 – Goal by Abdullahi(Flash)(Liverpool) – Assist: J.K(</li>
           <li>17:10 – Goal by Francis Masud (Liverpool)</li>
           <li>17:20 - Goal by Nzomi (Man City)</li>
-    
+          <li>17:41 - Goal by Mallam Musa (Man City) - Assist: Abbas</li>
+          <li>17:50 - Goal by Abdul(Icardi) (Man City)</li>
         </ul>
       </div>
     </div>
@@ -224,7 +225,7 @@
     // Automatic match status based on your exact timeline
     const matchTime = new Date("Dec 17, 2025 17:00:00").getTime();
     const firstHalfEnd = new Date("Dec 17, 2025 17:27:00").getTime();
-    const matchEnd = new Date("Dec 17, 2025 18:05:00").getTime();
+    const matchEnd = new Date("Dec 17, 2025 18:10:00").getTime();
     const statusEl = document.getElementById('match-status');
 
     function updateMatchStatus() {
@@ -248,6 +249,7 @@
   </script>
 </body>
 </html>
+
 
 
 
