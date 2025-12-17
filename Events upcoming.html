@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Match Event Viewer: Man City vs Liverpool</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upcoming Match Event Viewer</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -48,20 +47,6 @@
     .time {
       text-align: center;
       color: #555;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-    .status {
-      text-align: center;
-      font-size: 18px;
-      margin-bottom: 20px;
-      color: #e17055;
-      font-weight: bold;
-    }
-    .score {
-      font-size: 20px;
-      font-weight: bold;
-      text-align: center;
       margin-bottom: 20px;
     }
     .formations {
@@ -112,39 +97,11 @@
       line-height: 1.6;
       color: #2d3436;
     }
-    .match-events {
-      background: #dfe6e9;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 30px;
-    }
-    .match-events h2 {
-      text-align: center;
-      color: #2d3436;
-      margin-bottom: 10px;
-    }
-    .match-events ul {
-      padding-left: 20px;
-    }
-    .match-events li {
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
-
-    @media (max-width: 700px) {
-      .formations {
-        grid-template-columns: 1fr;
-      }
-      .header {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Exclusive Match Briefing: Man City vs Liverpool</h1>
+    <h1>Exclusive Pre-Match Briefing: Man City vs Liverpool</h1>
 
     <div class="match-card">
       <div class="header">
@@ -153,16 +110,11 @@
         <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg" alt="Liverpool Logo">
       </div>
 
-      <div class="time" id="match-time">Dec 17, 2025 16:40:00</div>
-      <div class="status" id="match-status">Upcoming</div>
-
-      <div class="score">
-        Score: <strong id="score-city">0</strong> - <strong id="score-liverpool">0</strong>
-      </div>
+      <div class="time">Tomorrow • 4:40 PM</div>
 
       <div class="formations">
         <div class="team">
-          <h3>Man City (3-1-2)</h3>
+          <h3>Man City (2-1-2)</h3>
           <ul>
             <li>Boas-CF</li>
             <li>Masud-CB</li>
@@ -177,7 +129,7 @@
         </div>
 
         <div class="team">
-          <h3>Liverpool (2-2-2)</h3>
+          <h3>Liverpool (2-2-1)</h3>
           <ul>
             <li>Gaddafi-CF (injured)</li>
             <li>Ablaba-CB</li>
@@ -198,51 +150,14 @@
         <h3>Abduallahi(Flash)-CF (Liverpool)</h3>
       </div>
 
-       <div class="news">
+      <div class="news">
         <h2>Matchday Update & Insights</h2>
         <p>In anticipation of this highly contested fixture, both teams are preparing strategically for a thrilling encounter. Manchester City will rely on a balanced 2-1-2 formation, deploying their strongest midfield engine to control the pace. Key players like Lucky(M.O) and Abdul(Icardi) are expected to influence the attacking dynamics.</p>
         <p>Liverpool faces challenges with Gaddafi sidelined due to injury, while Dada and Samson remain unavailable. Despite these setbacks, Abduallahi(Flash) steps up as the central figure, poised to drive the offense and emerge as the player to watch. Fans can expect a tightly contested match with moments of brilliance from emerging stars and experienced campaigners alike.</p>
         <p>Stay tuned for exclusive updates and expert insights as we approach kickoff!</p>
       </div>
 
-      <div class="match-events">
-        <h2>Match Events</h2>
-        <ul>
-          <!-- Manually update events here 
-          <li>16:40 – Kickoff</li>
-          <li>16:45 – Goal by Boas (Man City) – Assist: Lucky(M.O)</li>
-          <li>16:50 – Yellow Card: Masud (Man City)</li>
-          <li>17:05 – Goal by Francis (Liverpool) – Assist: Abduallahi(Flash)</li>
-        </ul>
-      </div>
     </div>
-  </div>-->
-
-  <script>
-    // Automatic match status based on your exact timeline
-    const matchTime = new Date("Dec 17, 2025 16:40:00").getTime();
-    const firstHalfEnd = new Date("Dec 17, 2025 17:15:00").getTime();
-    const matchEnd = new Date("Dec 17, 2025 18:00:00").getTime();
-    const statusEl = document.getElementById('match-status');
-
-    function updateMatchStatus() {
-      const now = new Date().getTime();
-      if (now < matchTime) {
-        statusEl.textContent = "Upcoming";
-        statusEl.style.color = "#e17055";
-      } else if (now >= matchTime && now <= firstHalfEnd) {
-        statusEl.textContent = "Live – First Half";
-        statusEl.style.color = "#00b894";
-      } else if (now > firstHalfEnd && now <= matchEnd) {
-        statusEl.textContent = "Live – Second Half";
-        statusEl.style.color = "#00b894";
-      } else {
-        statusEl.textContent = "Ended";
-        statusEl.style.color = "#636e72";
-      }
-    }
-
-    setInterval(updateMatchStatus, 1000);
-  </script>
+  </div>
 </body>
 </html>
