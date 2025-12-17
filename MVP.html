@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blazers FC MVPs</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        min-height: 100vh;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        text-align: center;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #ffcc00;
+        text-shadow: 2px 2px 5px #000;
+    }
+
+    .mvp-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .mvp-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid #ffcc00;
+        border-radius: 15px;
+        padding: 15px;
+        width: 230px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .mvp-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 0 25px #ffcc00, 0 0 40px rgba(255, 204, 0, 0.7);
+    }
+
+    .player-img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 10px auto;
+        border: 2px solid #ffcc00;
+        box-shadow: 0 0 8px #ffcc00;
+    }
+
+    .player-name {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #ffcc00;
+    }
+
+    .player-info {
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+    }
+
+    .contribution {
+        font-size: 1.1rem;
+        margin-top: 8px;
+        font-weight: bold;
+        color: #00ffcc;
+    }
+
+    .top-mvp {
+        border-color: #00ffcc;
+        box-shadow: 0 0 35px #00ffcc, 0 0 50px rgba(0, 255, 204, 0.7);
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .stat-bar {
+        height: 6px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 5px;
+        margin: 4px 0 12px 0;
+        overflow: hidden;
+    }
+
+    .stat-fill {
+        height: 100%;
+        background: #ffcc00;
+        width: 0%;
+        border-radius: 5px;
+        transition: width 1.5s ease-in-out;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .mvp-card {
+            width: 45%;
+        }
+        .player-img {
+            width: 80px;
+            height: 80px;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .mvp-card {
+            width: 90%;
+        }
+        .player-img {
+            width: 70px;
+            height: 70px;
+        }
+        h1 {
+            font-size: 1.8rem;
+        }
+        .player-name {
+            font-size: 1.2rem;
+        }
+        .contribution {
+            font-size: 1rem;
+        }
+        .player-info {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+<h1>Blazers FC MVPs</h1>
+
+<div class="mvp-container">
+    <div class="mvp-card" data-contribution="62">
+        <img src="https://via.placeholder.com/100" alt="Muzali" class="player-img">
+        <div class="player-name">Muzali</div>
+        <div class="player-info">Highest Contribution Ever</div>
+        <div class="player-info">Matches Played: 24</div>
+        <div class="player-info">Goals: 48</div>
+        <div class="player-info">Assists: 11</div>
+        <div class="contribution">Total Contribution: 59</div>
+        <div class="stat-bar"><div class="stat-fill"></div></div>
+    </div>
+
+    <div class="mvp-card" data-contribution="20">
+        <img src="image/anees.jpg" alt="Alhusain Idris" class="player-img">
+        <div class="player-name">Alhusain Idris</div>
+        <div class="player-info">Highest Assist</div>
+        <div class="player-info">Matches Played: 24</div>
+        <div class="player-info">Assists: 20</div>
+        <div class="contribution">Contribution: 20</div>
+        <div class="stat-bar"><div class="stat-fill"></div></div>
+    </div>
+
+    <div class="mvp-card" data-contribution="6">
+        <img src="image/lucky.jpg" alt="Lucky" class="player-img">
+        <div class="player-name">Lucky</div>
+        <div class="player-info">Tournament: League</div>
+        <div class="player-info">Goals: 4 | Assists: 2</div>
+        <div class="contribution">Contribution: 6</div>
+        <div class="stat-bar"><div class="stat-fill"></div></div>
+    </div>
+
+    <div class="mvp-card" data-contribution="4">
+        <img src="https://via.placeholder.com/100" alt="Nurex" class="player-img">
+        <div class="player-name">Nurex</div>
+        <div class="player-info">Tournament: Winter</div>
+        <div class="player-info">Goals: 2 | Assists: 2</div>
+        <div class="contribution">Contribution: 4</div>
+        <div class="stat-bar"><div class="stat-fill"></div></div>
+    </div>
+
+    <div class="mvp-card" data-contribution="30">
+        <img src="image/ruwa.jpg" alt="Emmanuel Ruwa" class="player-img">
+        <div class="player-name">Emmanuel Ruwa</div>
+        <div class="player-info">Most Appearances</div>
+        <div class="player-info">Matches Played: 30</div>
+        <div class="contribution">Contribution: 30</div>
+        <div class="stat-bar"><div class="stat-fill"></div></div>
+    </div>
+</div>
+
+<script>
+    const cards = document.querySelectorAll('.mvp-card');
+    let maxContribution = 0;
+    let topCard = null;
+
+    cards.forEach(card => {
+        const contribution = parseInt(card.dataset.contribution);
+        if(contribution > maxContribution){
+            maxContribution = contribution;
+            topCard = card;
+        }
+        const statFill = card.querySelector('.stat-fill');
+        setTimeout(() => {
+            statFill.style.width = Math.min(contribution * 2, 100) + '%';
+        }, 300);
+    });
+
+    if(topCard){
+        topCard.classList.add('top-mvp');
+    }
+</script>
+
+</body>
+</html>

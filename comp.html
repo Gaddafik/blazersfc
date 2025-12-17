@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison</title>
+    <style>
+        .w-100 {
+            width: 100%;
+        }
+        .w-50 {
+            width: 50%;
+            display: inline-block;
+        }
+        .center{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table height="700px" align="center">
+        <tr>
+            <th colspan="2">
+                Players comparison
+            </th>
+        </tr>
+        <tr width="250px" bgcolor="1c2833" style="color: white; padding: 20px;">
+            <th>
+                Player 1
+                <br>
+                <select onchange="playerSelection('player1',this)">
+                    <option>Compare</option>
+                    <option>Munzali</option>
+                    <option>Gaddafi</option>
+                    <option>Goodness</option>
+                    <option>ThankGod</option>
+                    <option>Ziggy</option>
+                    <option>Emmanuel Ruwa</option>
+                    <option>Anees</option>
+                    <option>Boass</option>
+                    <option>Dan Jacob</option>
+                    <option>Francis</option>
+                    <option>Akaba</option>
+                    <option>Promise</option>
+                    <option>Nzomi</option>
+                    <option>David</option>
+                    <option>Dada</option>
+                    <option>Emma Masa</option>
+                    <option>Lucky</option>
+                </select>
+            </th>
+            <th>
+                Player 2 <br>
+                <select onchange="playerSelection('player2',this)">
+                    <option>Compare</option>
+                    <option>Munzali</option>
+                    <option>Gaddafi</option>
+                    <option>Goodness</option>
+                    <option>ThankGod</option>
+                    <option>Ziggy</option>
+                    <option>Emmanuel Ruwa</option>
+                    <option>Anees</option>
+                    <option>Boass</option>
+                    <option>Dan Jacob</option>
+                    <option>Francis</option>
+                    <option>Akaba</option>
+                    <option>Promise</option>
+                    <option>Nzomi</option>
+                    <option>David</option>
+                    <option>Dada</option>
+                    <option>Emma Masa</option>
+                    <option>Lucky</option>
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <td width="250px" bgcolor="1c2833" style="color: white; padding: 20px;">
+                <img id="player1pic" src="image/img-5.jpg" alt="" style="width: 150px;height: 150px; border-radius: 50%;">
+                <p id="player1name"></p>
+                <p id="player1position"></p>
+                <p id="player1goals"></p>
+                <p id="player1assists"></p>
+                <p id="player1appearance"></p>
+                <p id="player1wins"></p>
+
+            </td>
+            <td width="250px" style="padding: 10px;color: black; background-color: whitesmoke;">
+                <img id="player2pic" src="image/img-5.jpg" alt="" style="width: 150px;height: 150px; border-radius: 50%;">
+                <p id="player2name"></p>
+                <p id="player2position"></p>
+                <p id="player2goals"></p>
+                <p id="player2assists"></p>
+                <p id="player2appearance"></p>
+                <p id="player2wins"></p>
+
+
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function comparePlayers(id, pic, name, position, goals, assists, appearance, wins){
+            document.getElementById(id+'pic').src = 'image/'+pic
+            document.getElementById(id+'name').innerHTML = name
+            document.getElementById(id+'position').innerHTML = position
+            document.getElementById(id+'goals').innerHTML = goals
+            document.getElementById(id+'assists').innerHTML = assists
+            document.getElementById(id+'appearance').innerHTML = appearance
+            document.getElementById(id+'wins').innerHTML = wins
+        }
+
+        function playerSelection(playerid, e){
+            var players = {
+                "Munzali": {
+                    fullname: "NAME: Munzali Nuhu",
+                    positon: "POSITON: CF & GK",
+                    goals: "GOALS: 48",
+                    assists: "ASSISTS: 11",
+                    picture: "img-6.jpg",
+                    appearance: "APPEARANCE: 24",
+                    wins: "WINS: 10"
+                },
+                "Gaddafi": {
+                    fullname: "NAME: Gaddafi Kasim",
+                    positon: "POSITON: AMF & RB",
+                    goals: "GOALS: 15",
+                    assists: "ASSISTS: 18",
+                    picture: "Gaddafi.jpg",
+                    appearance: "APPEARANCE: 20",
+                    wins: "WINS: 12"
+                },
+                "Goodness": {
+                    fullname: "NAME: Goodness Gimba",
+                    positon: "POSITON: WF & AMF",
+                    goals: "GOALS: 6",
+                    assists: "ASSISTS: 13",
+                    picture: "Goodness.jpg",
+                    appearance: "APPEARANCE: 29",
+                    wins: "WINS: 6"
+                },
+                "ThankGod": {
+                    fullname: "NAME: ThankGod Joshua",
+                    positon: "POSITON: DMF & CMF",
+                    goals: "GOALS: 38",
+                    assists: "ASSISTS: 15",
+                    picture: "img-6.jpg",
+                    appearance: "APPEARANCE: 23",
+                    wins: "WINS: 11"
+                },
+                "Ziggy": {
+                    fullname: "NAME: Ephraim Dadu",
+                    positon: "POSITON: CF & CB",
+                    goals: "GOALS: 13",
+                    assists: "ASSISTS: 5",
+                    picture: "Ziggy.jpg",
+                    appearance: "APPEARANCE: 10",
+                    wins: "WINS: 5"
+                },
+                "Emmanuel Ruwa": {
+                    fullname: "NAME: Emmanuel Ruwa",
+                    positon: "POSITON: CB & WB",
+                    goals: "GOALS: 6",
+                    assists: "ASSISTS: 5",
+                    picture: "Ruwa.jpg",
+                    appearance: "APPEARANCE: 30",
+                    wins: "WINS: 10"
+                },
+                "Anees": {
+                    fullname: "NAME: Alhusian Idris",
+                    positon: "POSITON: CB & AMF",
+                    goals: "GOALS: 22",
+                    assists: "ASSISTS: 20",
+                    picture: "Anees.jpg",
+                    appearance: "APPEARANCE: 23",
+                    wins: "WINS: 12"
+                },
+                "Boass": {
+                    fullname: "NAME: Boass Isaac",
+                    positon: "POSITON: GK & CF ",
+                    goals: "GOALS: 22",
+                    assists: "ASSISTS: 13",
+                    picture: "boass.jpg",
+                    appearance: "APPEARANCE: 27",
+                    wins: "WINS: 10"
+                },
+                "Dan Jacob": {
+                    fullname: "NAME: Dan Jacob",
+                    positon: "POSITON: CF",
+                    goals: "GOALS: 17",
+                    assists: "ASSISTS: 16",
+                    picture: "Dan.jpg",
+                    appearance: "APPEARANCE: 14",
+                    wins: "WINS: 3"
+                },
+                "Francis": {
+                    fullname: "NAME: Francis Bello",
+                    positon: "POSITON: CF & WF",
+                    goals: "GOALS: 28",
+                    assists: "ASSISTS: 17",
+                    picture: "Francis.jpg",
+                    appearance: "APPEARANCE: 28",
+                    wins: "WINS: 8"
+                },
+                "Akaba": {
+                    fullname: "NAME: Gimba Akaba",
+                    positon: "POSITON: AMF & WF",
+                    goals: "GOALS: 6",
+                    assists: "ASSISTS: 2",
+                    picture: "img4.jpg",
+                    appearance: "APPEARANCE: 6",
+                    wins: "WINS: 2"
+                },
+                "Promise": {
+                    fullname: "NAME: Promise ",
+                    positon: "POSITON:GK & WF",
+                    goals: "GOALS: 4",
+                    assists: "ASSISTS: 2",
+                    picture: "img5.jpg",
+                    appearance: "APPEARANCE: 10",
+                    wins: "WINS: 4"
+                },
+                "Nzomi": {
+                    fullname: "NAME: Nzomi",
+                    positon: "POSITON: CB",
+                    goals: "GOALS: 3",
+                    assists: "ASSISTS: 0",
+                    picture: "img6.jpg",
+                    appearance: "APPEARANCE: 18",
+                    wins: "WINS: 5"
+                },
+                "David": {
+                    fullname: "NAME: David",
+                    positon: "POSITON: RB",
+                    goals: "GOALS: 1",
+                    assists: "ASSISTS: 2",
+                    picture: "img7.jpg",
+                    appearance: "APPEARANCE: 8",
+                    wins: "WINS: 0"
+                },
+                "Dada": {
+                    fullname: "NAME: Dada",
+                    positon: "POSITON: CB & CMF",
+                    goals: "GOALS: 13",
+                    assists: "ASSISTS: 8",
+                    picture: "Dada.jpg",
+                    appearance: "APPEARANCE: 28",
+                    wins: "WINS: 5"
+                },
+                "Emma Masa": {
+                    fullname: "NAME: Emmanuel Masa",
+                    positon: "POSITON: GK & CF",
+                    goals: "GOALS: 10",
+                    assists: "ASSISTS: 3",
+                    picture: "img1.jpg",
+                    appearance: "APPEARANCE: 14",
+                    wins: "WINS: 4"
+                },
+                "Lucky": {
+                    fullname:"NAME: Lucky Joshua",
+                    positon: "POSITON: WF & CMF",
+                    goals: "GOALS: 13",
+                    assists: "ASSISTS: 12",
+                    picture: "lucky.jpg",
+                    appearance: "APPEARANCE: 15",
+                    wins: "WINS: 6"
+                }
+            }
+
+            var selectedP = players[e.value]
+
+            comparePlayers(playerid, selectedP.picture, selectedP.fullname, selectedP.positon, selectedP.goals, selectedP.assists, selectedP.appearance, selectedP.wins);
+            // console.log(selectedP.picture);
+        
+            // console.log()
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Winter Tournament</title>
+
+  <style>
+    :root {
+      --primary: #0b3d91;
+      --secondary: #111;
+      --accent: #2ecc71;
+      --danger: #e74c3c;
+      --light: #f4f6f8;
+      --border: #dcdcdc;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 1rem;
+      background: var(--light);
+      color: #333;
+    }
+
+    h1, h2, h3 {
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+
+    .notice {
+      background: var(--secondary);
+      color: #fff;
+      padding: 0.6rem 1rem;
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 2rem;
+      background: #fff;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem;
+      text-align: center;
+    }
+
+    th {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    tr.highlight {
+      background: #eaf4ff;
+    }
+
+    tr.warning {
+      background: #fdecea;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-link {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      margin: 1rem auto;
+      text-align: center;
+    }
+
+    .btn-link:hover {
+      background: #062f70;
+      text-decoration: none;
+    }
+
+    .fixtures {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+    }
+
+    .fixture {
+      margin-bottom: 1.2rem;
+    }
+
+    .score {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin: 0 0.3rem;
+      min-width: 28px;
+    }
+
+    .date {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 0.2rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="notice">
+    The Winter League commences on <strong>27th December</strong>. Registration is now officially closed.
+  </div>
+
+  <div class="container">
+    <h1>Winter Tournament</h1>
+    <h2>League Table</h2>
+
+    <table>
+      <tr>
+        <th>P</th>
+        <th>Team</th>
+        <th>MP</th>
+        <th>W</th>
+        <th>D</th>
+        <th>L</th>
+        <th>GF</th>
+        <th>GA</th>
+        <th>GD</th>
+        <th>Pts</th>
+      </tr>
+      <tr class="highlight">
+        <td>1</td>
+        <td>Group A</td>
+        <td>3</td>
+        <td>2</td>
+        <td>0</td>
+        <td>1</td>
+        <td>6</td>
+        <td>8</td>
+        <td>-2</td>
+        <td>6</td>
+      </tr>
+      <tr class="warning">
+        <td>2</td>
+        <td>Group B</td>
+        <td>3</td>
+        <td>1</td>
+        <td>2</td>
+        <td>0</td>
+        <td>9</td>
+        <td>4</td>
+        <td>5</td>
+        <td>5</td>
+      </tr>
+      <tr class="warning">
+        <td>3</td>
+        <td>Group C</td>
+        <td>3</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>6</td>
+        <td>5</td>
+        <td>1</td>
+        <td>4</td>
+      </tr>
+      <tr class="warning">
+        <td>4</td>
+        <td>Group D</td>
+        <td>3</td>
+        <td>0</td>
+        <td>1</td>
+        <td>2</td>
+        <td>6</td>
+        <td>10</td>
+        <td>-4</td>
+        <td>1</td>
+      </tr>
+    </table>
+
+    <div style="text-align:center">
+      <a href="RegisteredPlayers.html" class="btn-link">View Registered Players</a>
+    </div>
+
+    <h2>Fixtures & Results</h2>
+    <div class="fixtures">
+      <div class="fixture">
+        <strong>Group A</strong>
+        <span class="score">2</span> x <span class="score">0</span>
+        <strong>Group C</strong>
+        <div class="date">27 December · 4:30 PM</div>
+      </div>
+
+      <div class="fixture">
+        <strong>Group B</strong>
+        <span class="score">2</span> x <span class="score">2</span>
+        <strong>Group D</strong>
+        <div class="date">28 December · 4:30 PM</div>
+      </div>
+
+      <div class="fixture">
+        <strong>Group B</strong>
+        <span class="score">6</span> x <span class="score">1</span>
+        <strong>Group A</strong>
+        <div class="date">29 December · 4:30 PM</div>
+      </div>
+
+      <div class="fixture">
+        <strong>Group C</strong>
+        <span class="score">5</span> x <span class="score">2</span>
+        <strong>Group D</strong>
+        <div class="date">30 December · 4:30 PM</div>
+      </div>
+
+      <div class="fixture">
+        <strong>Group D</strong>
+        <span class="score">2</span> x <span class="score">3</span>
+        <strong>Group A</strong>
+        <div class="date">2 January · 4:30 PM</div>
+      </div>
+
+      <div class="fixture">
+        <strong>Group C</strong>
+        <span class="score">1</span> x <span class="score">1</span>
+        <strong>Group B</strong>
+        <div class="date">3 January · 4:30 PM</div>
+      </div>
+    </div>
+
+    <h2>Top Scorers</h2>
+    <table>
+      <tr>
+        <th>P</th>
+        <th>Player</th>
+        <th>Team</th>
+        <th>Goals</th>
+      </tr>
+      <tr><td>1</td><td>Abbas</td><td>Group B</td><td>3</td></tr>
+      <tr><td>2</td><td>Nurex</td><td>Group B</td><td>2</td></tr>
+      <tr><td>2</td><td>ThankGod</td><td>Group B</td><td>2</td></tr>
+      <tr><td>2</td><td>Zick</td><td>Group C</td><td>2</td></tr>
+      <tr><td>2</td><td>Aness</td><td>Group D</td><td>2</td></tr>
+    </table>
+
+    <h2>Assists</h2>
+    <table>
+      <tr>
+        <th>P</th>
+        <th>Player</th>
+        <th>Team</th>
+        <th>Assists</th>
+      </tr>
+      <tr><td>1</td><td>Nurex</td><td>Group B</td><td>2</td></tr>
+      <tr><td>1</td><td>Huzaifa</td><td>Group C</td><td>2</td></tr>
+      <tr><td>3</td><td>Dada</td><td>Group B</td><td>1</td></tr>
+      <tr><td>3</td><td>Boaz</td><td>Group A</td><td>1</td></tr>
+      <tr><td>3</td><td>Ronaldo</td><td>Group D</td><td>1</td></tr>
+    </table>
+
+    <footer>
+      © Winter Tournament Committee
+    </footer>
+  </div>
+
+  
+</body>
+</html>

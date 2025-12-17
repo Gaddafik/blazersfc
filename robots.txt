@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://blazersfc.netlify.app/sitemap.xml

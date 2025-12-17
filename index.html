@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blazers FC | Official Football Club Website</title>
+
+<meta name="google-site-verification" content="zGZ4t6bb55x1vMrLEZWSwYUmQW4JbhkPShlpaU2_2DE" />
+<meta name="description" content="Blazers FC official website. View team players, fixtures, results, match updates and club news." />
+<meta name="keywords" content="Blazers FC, football club, local football team, Blazers football, Nigeria football club" />
+<meta name="author" content="Blazers FC" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* Basic Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+body { background: #f0f2f5; color: #333; line-height: 1.6; scroll-behavior: smooth; }
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* Header */
+.header { background: #111; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; position: sticky; top: 0; z-index: 1000; }
+.header .logo-user { display: flex; align-items: center; gap: 15px; }
+.header .logo { width: 50px; border-radius: 50%; }
+.header .navbar a { color: #fff; margin: 0 10px; padding: 5px 10px; border-radius: 5px; transition: 0.3s; font-weight: bold; }
+.header .navbar a:hover { background: #f39c12; color: #fff; }
+#menu-btn, #theme-toggler { font-size: 1.5rem; cursor: pointer; display: none; }
+
+/* Home Section */
+.home { height: 100vh; background: url('image/img7.png') center/cover no-repeat; display: flex; justify-content: center; align-items: center; text-align: center; color: #fff; position: relative; }
+.home::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); }
+.home-content { position: relative; z-index: 1; }
+.home h2 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 5px rgba(0,0,0,0.6); }
+.home p { font-size: 1.5rem; margin-bottom: 20px; text-shadow: 1px 1px 3px rgba(0,0,0,0.6); }
+.home .btn { background: #f39c12; color: #fff; padding: 12px 25px; border-radius: 5px; font-weight: bold; transition: 0.3s; }
+.home .btn:hover { background: #e67e22; }
+
+/* Section Titles */
+.section-title { text-align: center; font-size: 2.5rem; margin: 50px 0 30px; position: relative; }
+.section-title span { color: #f39c12; }
+.section-title::after { content: ''; width: 80px; height: 3px; background: #f39c12; display: block; margin: 10px auto 0; border-radius: 3px; }
+
+/* About Section */
+.about-container { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 0 5%; align-items: center; }
+.stats { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.stat-box { background: #fff; padding: 20px; border-radius: 10px; text-align: center; width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
+.stat-box:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.stat-box h3 { font-size: 1.5rem; color: #f39c12; margin-bottom: 5px; }
+.about-content { max-width: 500px; }
+.about-content h3 span { color: #f39c12; }
+.about-content p { margin: 15px 0; }
+.about-content .btn { background: #111; }
+.about-content .btn:hover { background: #f39c12; }
+
+/* Skills */
+.skills { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 50px 0; }
+.skill { background: #fff; padding: 20px; border-radius: 10px; width: 300px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+.skill:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.skill h4 { margin-bottom: 10px; display: flex; justify-content: space-between; }
+.skill-bar { background: #eee; border-radius: 25px; overflow: hidden; height: 15px; margin-bottom: 15px; }
+.skill-bar span { display: block; height: 100%; background: #f39c12; transition: width 1s ease-in-out; }
+
+/* Players Grid */
+.players-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 25px; margin: 0 5%; }
+.player-card { background: #fff; padding: 15px; text-align: center; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; position: relative; overflow: hidden; }
+.player-card img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px; transition: transform 0.3s; }
+.player-card:hover img { transform: scale(1.1); }
+.player-card h3 a { color: #111; font-weight: bold; transition: color 0.3s; }
+.player-card h3 a:hover { color: #f39c12; }
+
+/* Contact */
+.contact form { max-width: 600px; margin: 0 auto 50px; display: flex; flex-direction: column; gap: 15px; }
+.contact .input-field { padding: 12px 15px; border-radius: 8px; border: 1px solid #ccc; outline: none; transition: 0.3s; }
+.contact .input-field:focus { border-color: #f39c12; }
+.contact .btn { width: 150px; align-self: center; background: #111; }
+.contact .btn:hover { background: #f39c12; }
+
+/* Footer */
+.footer { text-align: center; padding: 20px 0; background: #111; color: #fff; }
+
+/* Dark theme */
+body.dark-theme { background: #1e1e1e; color: #ddd; }
+body.dark-theme .header { background: #222; }
+body.dark-theme .navbar a { color: #ddd; }
+body.dark-theme .player-card { background: #222; box-shadow: 0 5px 15px rgba(255,255,255,0.1); }
+body.dark-theme .skill { background: #222; }
+body.dark-theme .stat-box { background: #222; }
+
+/* Responsive */
+@media(max-width:1024px) {
+    .home h2 { font-size: 2.5rem; }
+    .home p { font-size: 1.2rem; }
+}
+@media(max-width:768px) {
+    .about-container { flex-direction: column; }
+    .skills { flex-direction: column; }
+    #menu-btn, #theme-toggler { display: block; color: #fff; }
+    .navbar { display: none; flex-direction: column; gap: 10px; background: #111; position: absolute; top: 70px; right: 5%; padding: 15px; border-radius: 10px; width: 90%; max-width: 300px; }
+    .navbar.active { display: flex; }
+    .skill { width: 100%; }
+    .player-card img { width: 80px; height: 80px; }
+    .player-card h3 { font-size: 0.9rem; }
+    .home h2 { font-size: 2rem; }
+    .home p { font-size: 1rem; }
+}
+@media(max-width:480px) {
+    .home h2 { font-size: 1.5rem; }
+    .home p { font-size: 0.9rem; }
+    .stat-box { width: 120px; padding: 15px; }
+}
+</style>
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="logo-user">
+        <img src="image/img7.png" alt="Blazers FC Logo" class="logo">
+        <div class="user-info">
+            <h1>Blazers FC</h1>
+            <p>Motivation is the key</p>
+        </div>
+    </div>
+    <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#players">Players</a>
+        <a href="Events upcoming.html">Upcoming Events</a>
+        <a href="MVP.html">Most Valuable Player</a>
+        <a href="playershuffle.html">Team Shuffler</a>
+        <a href="comp.html">Compare Players</a>
+        <a href="player ranking.html">All Time Ranking</a>
+        <a href="League.html">League</a>
+        <a href="December League.html">Winter Tournament</a>
+        <a href="tournament.html">Premier League</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div id="menu-btn" class="fas fa-bars"></div>
+    <div id="theme-toggler" class="fas fa-moon"></div>
+</header>
+
+<!-- Home -->
+<section class="home" id="home">
+    <div class="home-content">
+        <h2>Blazers FC</h2>
+        <p>We Unite as One</p>
+        <a href="https://wa.me/+2349035632885" class="btn">Contact Us</a>
+    </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+    <h2 class="section-title"><span>About</span> the Captain</h2>
+    <div class="about-container">
+        <div class="stats">
+            <div class="stat-box"><h3>5+</h3><p>Years in Position</p></div>
+            <div class="stat-box"><h3>20-25</h3><p>Age</p></div>
+            <div class="stat-box"><h3>5+</h3><p>Training Hours</p></div>
+            <div class="stat-box"><h3>Single</h3><p>Relationship</p></div>
+        </div>
+        <div class="about-content">
+            <h3>My Name is <span>Ephraim Dadu</span></h3>
+            <p>I am the captain of Blazers FC. I aim to lead my team with dedication, discipline, and teamwork.</p>
+            <a href="https://wa.me/+2349054014883" class="btn">Contact Me</a>
+        </div>
+    </div>
+    <div class="skills">
+        <div class="skill">
+            <h4>Shooting <span>90%</span></h4>
+            <div class="skill-bar"><span style="width:90%"></span></div>
+            <h4>Attacking <span>75%</span></h4>
+            <div class="skill-bar"><span style="width:75%"></span></div>
+            <h4>Tackling <span>80%</span></h4>
+            <div class="skill-bar"><span style="width:80%"></span></div>
+        </div>
+        <div class="skill">
+            <h4>Captaincy <span>95%</span></h4>
+            <div class="skill-bar"><span style="width:95%"></span></div>
+            <h4>Heading <span>80%</span></h4>
+            <div class="skill-bar"><span style="width:80%"></span></div>
+            <h4>Speed <span>65%</span></h4>
+            <div class="skill-bar"><span style="width:65%"></span></div>
+        </div>
+    </div>
+</section>
+
+<!-- Players -->
+<!-- Players -->
+<section class="players" id="players">
+    <h2 class="section-title">Team <span>Players</span></h2>
+    <div class="players-grid">
+        <div class="player-card">
+            <a href="Ziggy.html"><img src="image/Ziggy.jpg" alt="Ephraim Dadu"></a>
+            <h3><a href="Ziggy.html">1. Ephraim Dadu</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="profile.html"><img src="image/Gaddafi.jpg" alt="Gaddafi Kasim"></a>
+            <h3><a href="profile.html">2. Gaddafi Kasim</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Muzali's profile.html"><img src="image/img-5.jpg" alt="Moh'd Munzali Nuhu"></a>
+            <h3><a href="Muzali's profile.html">3. Moh'd Munzali Nuhu</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Trazil profile.html"><img src="image/Goodness.jpg" alt="Goodness Gimba"></a>
+            <h3><a href="Trazil profile.html">4. Goodness Gimba</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Lucky.html"><img src="image/Lucky.jpg" alt="Joshua Lucky"></a>
+            <h3><a href="Lucky.html">5. Joshua Lucky</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Bowa.html"><img src="image/Boass.jpg" alt="Isaac Boass"></a>
+            <h3><a href="Bowa.html">6. Isaac Boass</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Maga.html"><img src="image/img-2.jpg" alt="Maga"></a>
+            <h3><a href="Maga.html">7. Maga</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Samson.html"><img src="image/img-2.jpg" alt="Samson"></a>
+            <h3><a href="Samson.html">8. Samson</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Ayo david.html"><img src="image/img-2.jpg" alt="Ayo David"></a>
+            <h3><a href="Ayo david.html">9. Ayo David</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Ruwa.html"><img src="image/Ruwa.jpg" alt="Emmanuel Ruwa"></a>
+            <h3><a href="Ruwa.html">10. Emmanuel Ruwa</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Francis Junior.html"><img src="image/Francis.jpg" alt="Francis Bello"></a>
+            <h3><a href="Francis Junior.html">11. Francis Bello</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Akaba's profile.html"><img src="image/img-1.jpg" alt="Favour Gimba"></a>
+            <h3><a href="Akaba's profile.html">12. Favour Gimba</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Nzomi.html"><img src="image/img-3.jpg" alt="Nzomi"></a>
+            <h3><a href="Nzomi.html">13. Nzomi</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="promise.html"><img src="image/img-3.jpg" alt="Promise"></a>
+            <h3><a href="promise.html">14. Promise</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="hope's profile..html"><img src="image/img-2.jpg" alt="Hope Gimba"></a>
+            <h3><a href="hope's profile..html">15. Hope Gimba</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="ThankGod.html"><img src="image/img-4.jpg" alt="Joshua ThankGod"></a>
+            <h3><a href="ThankGod.html">16. Joshua ThankGod</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Dan Jacob.html"><img src="image/Dan.jpg" alt="Dan Jacob"></a>
+            <h3><a href="Dan Jacob.html">17. Dan Jacob</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Alhusain Anees.html"><img src="image/Anees.jpg" alt="Alhusain Idris"></a>
+            <h3><a href="Alhusain Anees.html">18. Alhusain Idris</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Dada.html"><img src="image/Dada.jpg" alt="Dada"></a>
+            <h3><a href="Dada.html">19. Dada</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="David.html"><img src="image/img-3.jpg" alt="David"></a>
+            <h3><a href="David.html">20. David</a></h3>
+        </div>
+        <div class="player-card">
+            <a href="Emma Masa.html"><img src="image/img-3.jpg" alt="Emmanuel Masa"></a>
+            <h3><a href="Emma Masa.html">21. Emmanuel Masa</a></h3>
+        </div>
+    </div>
+</section>
+</section>
+
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <h2 class="section-title">Contact <span>Us</span></h2>
+    <form>
+        <input type="text" placeholder="Your Name" class="input-field" required>
+        <input type="email" placeholder="Your Email" class="input-field" required>
+        <input type="text" placeholder="Subject" class="input-field">
+        <textarea placeholder="Your Message" class="input-field" rows="6"></textarea>
+        <button type="submit" class="btn">Send Message</button>
+    </form>
+</section>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <p>Created by <a href="https://ibnkasim.netlify.app" style="color:#f39c12;">Gaddafi</a> | All Rights Reserved &copy; 2025</p>
+</footer>
+
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const navbar = document.querySelector('.navbar');
+    menuBtn.addEventListener('click', () => { navbar.classList.toggle('active'); });
+
+    const themeToggler = document.getElementById('theme-toggler');
+    themeToggler.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        themeToggler.classList.toggle('fa-sun');
+    });
+</script>
+</body>
+</html>

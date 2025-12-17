@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shuffle — Player Team Allocator</title>
+<style>
+  :root {
+    --bg: #101010;
+    --panel: #1a1a1a;
+    --accent: #e63946;
+    --text: #f1f1f1;
+    --muted: #999;
+  }
+  body {
+    font-family: "Poppins", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    text-align: center;
+    background: var(--panel);
+    padding: 1rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--accent);
+  }
+  main {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: var(--panel);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px #000;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  label {
+    display: block;
+    margin-top: 1rem;
+    color: var(--muted);
+  }
+  textarea, input {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #222;
+    color: #fff;
+  }
+  button {
+    margin-top: 1.5rem;
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background: #c72e3b;
+  }
+  .results {
+    margin-top: 2rem;
+    background: #222;
+    padding: 1rem;
+    border-radius: 0.8rem;
+  }
+  .team {
+    margin-bottom: 1rem;
+    border: 1px solid var(--accent);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+  .team h3 {
+    color: var(--accent);
+    margin: 0 0 0.5rem 0;
+  }
+  ul {
+    list-style: none;
+    padding-left: 1rem;
+  }
+  #downloadBtn {
+    display: none;
+    background: #1d976c;
+    margin-top: 1rem;
+  }
+  #downloadBtn:hover {
+    background: #159061;
+  }
+</style>
+</head>
+<body>
+<header>⚽ Shuffle — Team Randomizer</header>
+<main>
+  <h2>Enter Details Below</h2>
+  
+  <label>Player Names & Positions (one per line, e.g. "Gaddafi - Forward")</label>
+  <textarea id="players" rows="6" placeholder="Enter players here..."></textarea>
+
+  <label>Team Names (comma separated)</label>
+  <input type="text" id="teams" placeholder="e.g. Team A, Team B, Team C" />
+
+  <label>Number of Shuffles</label>
+  <input type="number" id="shuffleCount" value="1" min="1" />
+
+  <button onclick="shuffleTeams()">Shuffle Players</button>
+  <button id="downloadBtn" onclick="downloadResults()">⬇️ Download Results</button>
+
+  <div id="results" class="results"></div>
+</main>
+
+<script>
+let lastResultsText = "";
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function shuffleTeams() {
+  const playerText = document.getElementById('players').value.trim();
+  const teamText = document.getElementById('teams').value.trim();
+  const shuffleCount = parseInt(document.getElementById('shuffleCount').value);
+  const resultDiv = document.getElementById('results');
+  const downloadBtn = document.getElementById('downloadBtn');
+  
+  if (!playerText || !teamText) {
+    resultDiv.innerHTML = `<p style="color:red;">Please enter both players and teams.</p>`;
+    downloadBtn.style.display = "none";
+    return;
+  }
+
+  let players = playerText.split("\n").map(p => p.trim()).filter(Boolean);
+  let teams = teamText.split(",").map(t => t.trim()).filter(Boolean);
+
+  for (let i = 0; i < shuffleCount; i++) {
+    players = shuffleArray(players);
+  }
+
+  let allocations = {};
+  teams.forEach(team => allocations[team] = []);
+
+  players.forEach((player, index) => {
+    const teamIndex = index % teams.length;
+    allocations[teams[teamIndex]].push(player);
+  });
+
+  let outputHTML = "<h2>Shuffle Results</h2>";
+  let outputText = "=== SHUFFLE RESULTS ===\n\n";
+  
+  Object.keys(allocations).forEach(team => {
+    outputHTML += `<div class="team"><h3>${team}</h3><ul>`;
+    outputText += `${team}:\n`;
+    allocations[team].forEach(p => {
+      outputHTML += `<li>${p}</li>`;
+      outputText += `- ${p}\n`;
+    });
+    outputHTML += "</ul></div>";
+    outputText += "\n";
+  });
+
+  resultDiv.innerHTML = outputHTML;
+  lastResultsText = outputText;
+  downloadBtn.style.display = "block";
+}
+
+function downloadResults() {
+  if (!lastResultsText) return;
+  const blob = new Blob([lastResultsText], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "shuffle-results.txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>

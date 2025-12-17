@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blazers Premier League</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+  body { background:#f0f4f8; color:#333; min-height:100vh; }
+  h1,h2 { text-align:center; margin:20px 0; font-weight:700; color:#0d3b66; }
+  h2 { margin-bottom:15px; }
+  .container { max-width:1200px; margin:auto; padding:15px; }
+  .flex { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+  .card { background:white; padding:20px; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.08); flex:1 1 300px; transition:0.3s; }
+  .card:hover { transform:translateY(-5px); box-shadow:0 15px 30px rgba(0,0,0,0.15); }
+  button { cursor:pointer; padding:7px 15px; margin:5px; border:none; border-radius:25px; font-weight:600; background:linear-gradient(45deg,#ff6b6b,#f06595); color:white; transition:0.3s; }
+  button:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+  .table-wrapper { overflow-x:auto; margin-top:10px; }
+  table { width:100%; border-collapse:collapse; min-width:700px; }
+  table th, table td { padding:12px; text-align:center; vertical-align:middle; }
+  table th { background:linear-gradient(90deg, #ff6b6b, #f06595); color:white; font-weight:600; }
+  table tr:nth-child(even){ background-color:#f7f9fb; }
+  table tr:hover { background:#ffe6e6; }
+  .team-logo { width:35px; height:35px; object-fit:cover; border-radius:50%; margin-right:10px; vertical-align:middle; }
+  .badge { background:linear-gradient(90deg,#ffb347,#ffcc33); color:#fff; padding:3px 10px; border-radius:12px; font-weight:600; margin-left:5px; font-size:0.85em; transition:0.3s; }
+  .badge:hover { transform:scale(1.1); }
+  .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:10; }
+  .modal-content { background:#fff; padding:25px; border-radius:15px; max-width:500px; width:90%; box-shadow:0 10px 25px rgba(0,0,0,0.2); position:relative; animation:pop 0.3s ease-in-out; }
+  @keyframes pop { from {transform:scale(0.5); opacity:0;} to {transform:scale(1); opacity:1;} }
+  .close { position:absolute; top:10px; right:15px; font-size:22px; cursor:pointer; color:#ff6b6b; font-weight:bold; }
+  ul { list-style:none; padding-left:0; }
+  li { padding:5px 0; font-weight:500; display:flex; align-items:center; }
+  @media(max-width:768px){ .flex{flex-direction:column;} table{min-width:100%;} }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🎄 Blazers Premier League 🎄</h1>
+
+  <div class="card">
+    <h2>Registered Teams & Players</h2>
+    <div id="teamsList"></div>
+  </div>
+
+  <div class="card">
+    <h2>Matches</h2>
+    <div id="matchesList"></div>
+  </div>
+
+  <div class="card">
+    <h2>League Table</h2>
+    <div class="table-wrapper">
+      <table id="leaderboardTable">
+        <thead>
+          <tr><th>Team</th><th>MP</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="flex">
+    <div class="card">
+      <h2>Top Scorers</h2>
+      <ul id="topScorers"></ul>
+    </div>
+    <div class="card">
+      <h2>Top Assists</h2>
+      <ul id="topAssists"></ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Tournament Summary</h2>
+    <p><strong>Winner:</strong> <span id="tournamentWinner">-</span></p>
+    <p><strong>Most Valuable Player:</strong> <span id="mvpPlayer">-</span></p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h2>Match Events</h2>
+    <ul id="matchEvents"></ul>
+  </div>
+</div>
+
+<script>
+// Teams
+const teams = {
+  'Man United': { players: ['Bobo-CB','Ziggy-CF','Lucky(Kaza)-CM','Amale-CB','ThankGod-CM','A.K-CB','Iko-CM','Promise-GK','Chibuzor-CF'], logo:'https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg' },
+  'Arsenal': { players: ['Anees-CM','Ruwa-CB','Usman-CM','David-CM','Emma(Masa)-CF','Saidu-CF','Su-CF','Dan Jacob-CF','RealMadrid-CB'], logo:'https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg' },
+  'Man City': { players: ['Mallam Musa-CM','Masud-CB','Trazil-CF','Boas-CF','Abbas-CF','Nzomi-CB','Lucky(M.O)-CM','Abdul(Icardi)-CM','Kyunee'], logo:'https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg' },
+  'Liverpool': { players: ['Dada-CB','Gaddafi-CF','Ablaba-CB','Huzaifa-CB','Nura-CM','Francis-CF','Samson-CB','Munzali-CF','Abduallahi(Flash)- CF'], logo:'https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg' }
+};
+
+let matches=[], leaderboard={}, topScorersData={}, topAssistsData={};
+
+
+const today = new Date();
+const day = today.getDay();
+const daysUntilWednesday = (3 - day + 7) % 7; // 3 = Wednesday
+const tournamentStart = new Date(today);
+tournamentStart.setDate(today.getDate() + daysUntilWednesday);
+tournamentStart.setHours(16,40,0,0); // 4 PM
+
+function formatMatchDate(date){
+  const options = { weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' };
+  return date.toLocaleString('en-GB', options);
+}
+
+function renderTeams(){
+  const container=document.getElementById('teamsList');
+  container.innerHTML='';
+  for(const team in teams){
+    const div=document.createElement('div');
+    div.style.marginBottom='10px';
+    div.innerHTML=`<img class="team-logo" src="${teams[team].logo}" alt="${team} logo"><strong>${team}</strong>: ${teams[team].players.join(', ')}`;
+    container.appendChild(div);
+  }
+}
+
+
+function addMatch(home, away, homeGoals=null, awayGoals=null, events=[], matchDate=null){
+  if(!matchDate){
+    const matchIndex = matches.length;
+    matchDate = new Date(tournamentStart);
+    matchDate.setDate(tournamentStart.getDate() + matchIndex);
+    matchDate.setHours(16,40,0,0);
+  }
+
+  const match = {
+    home,
+    away,
+    score: (homeGoals !== null && awayGoals !== null) ? `${homeGoals}-${awayGoals}` : '-',
+    events,
+    played: (homeGoals !== null && awayGoals !== null),
+    date: matchDate
+  };
+  matches.push(match);
+
+  if(match.played){
+    updateLeaderboard(home, away, homeGoals, awayGoals);
+    updateTopScorers(events);
+    updateTopAssists(events);
+    renderLeaderboard();
+    renderTopScorersList();
+    renderTopAssistsList();
+  }
+
+  renderMatches();
+  calculateTournamentWinner();
+  calculateMVP();
+}
+
+
+function renderMatches(){
+  const container = document.getElementById('matchesList');
+  container.innerHTML = '';
+  matches.forEach((match,i)=>{
+    const div = document.createElement('div');
+    div.style.marginBottom = '10px';
+    div.innerHTML = `<img class="team-logo" src="${teams[match.home].logo}" alt="${match.home}">
+                     <strong>${match.home} ${match.score} ${match.away}</strong>
+                     <img class="team-logo" src="${teams[match.away].logo}" alt="${match.away}">
+                     <span style="margin-left:10px; font-weight:500; color:#555;">(${formatMatchDate(match.date)})</span>
+                     <button onclick="viewEvents(${i})">View Events</button>`;
+    container.appendChild(div);
+  });
+}
+
+
+function updateLeaderboard(home,away,homeGoals,awayGoals){
+  if(!leaderboard[home]) leaderboard[home]={MP:0,W:0,D:0,L:0,GF:0,GA:0,GD:0,Pts:0};
+  if(!leaderboard[away]) leaderboard[away]={MP:0,W:0,D:0,L:0,GF:0,GA:0,GD:0,Pts:0};
+
+  leaderboard[home].MP++; leaderboard[away].MP++;
+  leaderboard[home].GF+=homeGoals; leaderboard[home].GA+=awayGoals;
+  leaderboard[away].GF+=awayGoals; leaderboard[away].GA+=homeGoals;
+
+  if(homeGoals>awayGoals){ leaderboard[home].W++; leaderboard[away].L++; leaderboard[home].Pts+=3; }
+  else if(homeGoals<awayGoals){ leaderboard[away].W++; leaderboard[home].L++; leaderboard[away].Pts+=3; }
+  else{ leaderboard[home].D++; leaderboard[away].D++; leaderboard[home].Pts++; leaderboard[away].Pts++; }
+
+  leaderboard[home].GD=leaderboard[home].GF-leaderboard[home].GA;
+  leaderboard[away].GD=leaderboard[away].GF-leaderboard[away].GA;
+}
+
+function renderLeaderboard(){
+  const tbody=document.querySelector('#leaderboardTable tbody');
+  tbody.innerHTML='';
+  const sortedTeams=Object.entries(leaderboard).sort((a,b)=>b[1].Pts-a[1].Pts);
+  sortedTeams.forEach(([team,data])=>{
+    const row=document.createElement('tr');
+    row.innerHTML=`<td><img class="team-logo" src="${teams[team].logo}" alt="${team} logo">${team}</td>
+                   <td>${data.MP}</td><td>${data.W}</td><td>${data.D}</td><td>${data.L}</td>
+                   <td>${data.GF}</td><td>${data.GA}</td><td>${data.GD}</td><td>${data.Pts}</td>`;
+    tbody.appendChild(row);
+  });
+}
+
+// Top scorers and assists
+function updateTopScorers(events){ events.forEach(e=>{ if(e.type==='goal') topScorersData[e.player]=(topScorersData[e.player]||0)+1; }); }
+function renderTopScorersList(){
+  const ul=document.getElementById('topScorers'); ul.innerHTML='';
+  const sorted=Object.entries(topScorersData).sort((a,b)=>b[1]-a[1]);
+  sorted.forEach(([player,goals])=>{
+    let playerTeam=''; for(const team in teams){ if(teams[team].players.includes(player)){playerTeam=team;break;} }
+    const li=document.createElement('li');
+    li.innerHTML=`<img class="team-logo" src="${teams[playerTeam].logo}" alt="${playerTeam}">${player} <span class="badge">${goals} goals</span>`;
+    ul.appendChild(li);
+  });
+}
+
+function updateTopAssists(events){ events.forEach(e=>{ if(e.type==='assist') topAssistsData[e.player]=(topAssistsData[e.player]||0)+1; }); }
+function renderTopAssistsList(){
+  const ul=document.getElementById('topAssists'); ul.innerHTML='';
+  const sorted=Object.entries(topAssistsData).sort((a,b)=>b[1]-a[1]);
+  sorted.forEach(([player,assists])=>{
+    let playerTeam=''; for(const team in teams){ if(teams[team].players.includes(player)){playerTeam=team;break;} }
+    const li=document.createElement('li');
+    li.innerHTML=`<img class="team-logo" src="${teams[playerTeam].logo}" alt="${playerTeam}">${player} <span class="badge">${assists} assists</span>`;
+    ul.appendChild(li);
+  });
+}
+
+
+function viewEvents(index){
+  const modal=document.getElementById('modal');
+  const ul=document.getElementById('matchEvents'); ul.innerHTML='';
+  matches[index].events.forEach(e=>{
+    const li=document.createElement('li');
+    li.textContent=`${e.min}' - ${e.player} (${e.team}) - ${e.type}`;
+    ul.appendChild(li);
+  });
+  modal.style.display='flex';
+}
+document.getElementById('closeModal').onclick=()=>{document.getElementById('modal').style.display='none';};
+
+function calculateTournamentWinner(){
+  const sortedTeams = Object.entries(leaderboard).sort((a,b)=>b[1].Pts - a[1].Pts);
+  const winner = sortedTeams[0] ? sortedTeams[0][0] : '-';
+  document.getElementById('tournamentWinner').textContent = winner;
+}
+
+function calculateMVP(){
+  const contributions={};
+  for(const player in topScorersData) contributions[player]=(contributions[player]||0)+topScorersData[player];
+  for(const player in topAssistsData) contributions[player]=(contributions[player]||0)+topAssistsData[player];
+  const sorted=Object.entries(contributions).sort((a,b)=>b[1]-a[1]);
+  const mvp=sorted[0] ? sorted[0][0]+` (${sorted[0][1]} contributions)` : '-';
+  document.getElementById('mvpPlayer').textContent = mvp;
+}
+
+
+renderTeams();
+
+addMatch('Man City','Liverpool');
+addMatch('Arsenal','Man United');
+addMatch('Man United','Man City');
+addMatch('Arsenal','Liverpool');
+addMatch('Liverpool','Man United');
+addMatch('Man City','Arsenal');
+
+</script>
+</body>
+</html>
